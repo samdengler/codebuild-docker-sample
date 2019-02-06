@@ -4,24 +4,21 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login --no-include-email --region us-east-1)
+      - $(aws ecr get-login --no-include-email --region ${AWS_REGION})
   build:
     commands:
       - echo Build started on $(date)
       - echo Building the Docker image...          
-      - docker build -t ${REPO_NAME}:latest .
-      - docker tag ${REPO_NAME}:latest 068896461592.dkr.ecr.us-east-1.amazonaws.com/${REPO_NAME}:latest
+      - docker build -t ${IMAGE_REPO_NAME}:latest .
+      - docker tag ${IMAGE_REPO_NAME}:${CODEBUILD_SOURCE_VERSION} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${CODEBUILD_SOURCE_VERSION}
+      - docker tag ${IMAGE_REPO_NAME}:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:latest
   post_build:
     commands:
       - echo Build completed on $(date)
       - echo Pushing the Docker image...
-      - docker push 068896461592.dkr.ecr.us-east-1.amazonaws.com/${REPO_NAME}:latest
-#      - docker push 068896461592.dkr.ecr.us-east-1.amazonaws.com/${REPO_NAME}:latest | tee docker-push.out
-#      - cat docker-push.out
-#      - dockerrun_name=$(sed -n 's/.*digest: \([^ ]*\).*/\1/p' docker-push.out)
-#      - echo $dockerrun_name 
-#      - aws s3 cp Dockerrun.aws.json s3://fsd-artifacts/$dockerrun_name --acl public-read
-#
+      - docker push 068896461592.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:latest
+      - docker push 068896461592.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${CODEBUILD_SOURCE_VERSION}
+
 artifacts:
   files:
     - Dockerrun.aws.json
