@@ -9,10 +9,10 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - docker build -t ddc:latest .
-      - docker tag nginx:latest 068896461592.dkr.ecr.us-east-1.amazonaws.com/nginx:latest      
+      - docker build -t node-sample:latest .
+      - docker tag node-sample:latest 068896461592.dkr.ecr.us-east-1.amazonaws.com/node-sample:latest
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 068896461592.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
+      - docker push 068896461592.dkr.ecr.us-east-1.amazonaws.com/node-sample:latest
