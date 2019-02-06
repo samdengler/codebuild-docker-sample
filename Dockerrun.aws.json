@@ -1,7 +1,7 @@
 {
    "AWSEBDockerrunVersion": "1",
    "Image": {
-     "Name": "068896461592.dkr.ecr.us-east-1.amazonaws.com/nginx:latest",
+     "Name": "068896461592.dkr.ecr.us-east-1.amazonaws.com/node-sample:latest",
      "Update": "true"
    },
    "Ports": [
