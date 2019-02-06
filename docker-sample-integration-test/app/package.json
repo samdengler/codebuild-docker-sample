@@ -1,0 +1,17 @@
+{
+  "name": "codepipeline-s3-batch-public-read",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.391.0",
+    "node-fetch": "^2.3.0",
+    "unzipper": "^0.9.8"
+  }
+}
