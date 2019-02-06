@@ -22,6 +22,6 @@ phases:
 #      - echo $dockerrun_name 
 #      - aws s3 cp Dockerrun.aws.json s3://fsd-artifacts/$dockerrun_name --acl public-read
 #
-  artifacts:
-    files:
-      - Dockerrun.aws.json
+artifacts:
+  files:
+    - Dockerrun.aws.json
