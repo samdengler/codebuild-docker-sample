@@ -10,14 +10,14 @@ phases:
       - echo Build started on $(date)
       - echo Building the Docker image...          
       - docker build -t ${IMAGE_REPO_NAME}:latest .
-      - docker tag ${IMAGE_REPO_NAME}:${CODEBUILD_SOURCE_VERSION} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${CODEBUILD_SOURCE_VERSION}
+#      - docker tag ${IMAGE_REPO_NAME}:${CODEBUILD_SOURCE_VERSION} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${CODEBUILD_SOURCE_VERSION}
       - docker tag ${IMAGE_REPO_NAME}:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:latest
   post_build:
     commands:
       - echo Build completed on $(date)
       - echo Pushing the Docker image...
+#      - docker push 068896461592.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${CODEBUILD_SOURCE_VERSION}
       - docker push 068896461592.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:latest
-      - docker push 068896461592.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${CODEBUILD_SOURCE_VERSION}
 
 artifacts:
   files:
