@@ -15,8 +15,13 @@ phases:
     commands:
       - echo Build completed on $(date)
       - echo Pushing the Docker image...
-      - docker push 068896461592.dkr.ecr.us-east-1.amazonaws.com/${REPO_NAME}:latest | tee docker-push.out
-      - cat docker-push.out
-      - dockerrun_name=$(sed -n 's/.*digest: \([^ ]*\).*/\1/p' docker-push.out)
-      - echo $dockerrun_name 
-      - aws s3 cp Dockerrun.aws.json s3://fsd-artifacts/$dockerrun_name --acl public-read
+      - docker push 068896461592.dkr.ecr.us-east-1.amazonaws.com/${REPO_NAME}:latest
+#      - docker push 068896461592.dkr.ecr.us-east-1.amazonaws.com/${REPO_NAME}:latest | tee docker-push.out
+#      - cat docker-push.out
+#      - dockerrun_name=$(sed -n 's/.*digest: \([^ ]*\).*/\1/p' docker-push.out)
+#      - echo $dockerrun_name 
+#      - aws s3 cp Dockerrun.aws.json s3://fsd-artifacts/$dockerrun_name --acl public-read
+#
+  artifacts:
+    files:
+      - Dockerrun.aws.json
